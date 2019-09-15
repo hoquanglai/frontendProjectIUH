@@ -29,10 +29,19 @@ import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-
+import userSevice from "sevice/user.sevice"
 import avatar from "assets/img/faces/face-3.jpg";
 
 class UserProfile extends Component {
+
+
+  componentDidMount() {
+    // this.props.productService.findAll();
+    // this.props.fetchAllProducts();
+    userSevice.findAll();
+    console.log(userSevice.findAll())
+  }
+
   render() {
     return (
       <div className="content">
@@ -44,16 +53,8 @@ class UserProfile extends Component {
                 content={
                   <form>
                     <FormInputs
-                      ncols={["col-md-5", "col-md-3", "col-md-4"]}
+                      ncols={["col-md-6", "col-md-6"]}
                       properties={[
-                        {
-                          label: "Company (disabled)",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Company",
-                          defaultValue: "Creative Code Inc.",
-                          disabled: true
-                        },
                         {
                           label: "Username",
                           type: "text",
@@ -70,22 +71,15 @@ class UserProfile extends Component {
                       ]}
                     />
                     <FormInputs
-                      ncols={["col-md-6", "col-md-6"]}
+                      ncols={["col-md-12"]}
                       properties={[
                         {
-                          label: "First name",
+                          label: "Phone",
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "First name",
-                          defaultValue: "Mike"
+                          placeholder: "phone number",
+                          defaultValue: "0916594249"
                         },
-                        {
-                          label: "Last name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Last name",
-                          defaultValue: "Andrew"
-                        }
                       ]}
                     />
                     <FormInputs
@@ -98,31 +92,6 @@ class UserProfile extends Component {
                           placeholder: "Home Adress",
                           defaultValue:
                             "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-4", "col-md-4", "col-md-4"]}
-                      properties={[
-                        {
-                          label: "City",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "City",
-                          defaultValue: "Mike"
-                        },
-                        {
-                          label: "Country",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Country",
-                          defaultValue: "Andrew"
-                        },
-                        {
-                          label: "Postal Code",
-                          type: "number",
-                          bsClass: "form-control",
-                          placeholder: "ZIP Code"
                         }
                       ]}
                     />
@@ -163,19 +132,6 @@ class UserProfile extends Component {
                     <br />
                     I'm in that two seat Lambo"
                   </span>
-                }
-                socials={
-                  <div>
-                    <Button simple>
-                      <i className="fa fa-facebook-square" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-twitter" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-google-plus-square" />
-                    </Button>
-                  </div>
                 }
               />
             </Col>
