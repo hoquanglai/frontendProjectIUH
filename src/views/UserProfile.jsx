@@ -36,8 +36,6 @@ class UserProfile extends Component {
 
 
   componentDidMount() {
-    // this.props.productService.findAll();
-    // this.props.fetchAllProducts();
     userSevice.findAll();
     console.log(userSevice.findAll())
   }
