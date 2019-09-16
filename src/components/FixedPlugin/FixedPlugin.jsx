@@ -179,7 +179,7 @@ class FixedPlugin extends Component {
               </a>
             </li>
 
-            <li className="button-container">
+            {/* <li className="button-container">
               <div className="">
                 <a
                   href="https://www.creative-tim.com/product/light-bootstrap-dashboard-react?ref=lbdr-fixed-plugin"
@@ -209,7 +209,7 @@ class FixedPlugin extends Component {
               >
                 Documentation
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
