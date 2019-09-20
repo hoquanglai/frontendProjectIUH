@@ -4,6 +4,7 @@ import "./Login.css";
 // import React from "react";
 import ReactDOM from "react-dom";
 import AdminLayout from "layouts/Admin.jsx";
+import axios from 'axios'
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
@@ -13,8 +14,42 @@ export default class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      loggedIn: false,
+      username: null
     };
+
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+  }
+  
+  componentDidMount() {
+    this.getUser()
+  }
+
+  getUser() {
+    axios.get('/getInfo/',
+    {
+      username: 'aa',
+      password: 'this.state.password'
+    }).then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.username) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
   }
 
   validateForm() {

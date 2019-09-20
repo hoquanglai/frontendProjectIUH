@@ -5,6 +5,4 @@ const api = apis.USER_API;
 
 const accountService = factoryService(api);
 
-// Overide
-
 export default accountService;
