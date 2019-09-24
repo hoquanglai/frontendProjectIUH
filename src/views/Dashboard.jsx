@@ -36,6 +36,19 @@ import {
 } from "variables/Variables.jsx";
 
 class Dashboard extends Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      menu: false
+    };
+  }
+
+  toggleMenu = () => {
+    this.setState({ menu: !this.state.menu })
+  }
+
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -46,10 +59,46 @@ class Dashboard extends Component {
     }
     return legend;
   }
+
+  createHtml = (data) => {
+    console.log(data);
+    const bodyHear = data.map((element, index) => {
+      return (
+        <div className="col-sm-3 col-xs-3" key={index++}>
+          <a>{element}</a>
+        </div>
+      )
+    });
+    return bodyHear;
+  }
+
   render() {
+    const site = ['Hà Nội', 'Đà Nẵng', 'Hồ Chí Minh'];
+    const add = ['Phú Yên', 'Hà Giang', 'Lâm Đồng', 'Singapore', 'Ninh Bình'];
+
     return (
       <div className="content">
-        <Grid fluid>
+
+        <Row>
+          <Col lg={3} sm={6}>
+            <button type="button" class="btn btn-primary">Tạo bài viết</button>
+          </Col>
+
+        </Row>
+        <Row>
+          {this.createHtml(site)}
+          <div className="col-sm-3 col-xs-3">
+            <a onClick={this.toggleMenu}>Xem thêm ...</a>
+          </div>
+          <div>
+            {this.state.menu ? this.createHtml(add) : ''}
+          </div>
+
+        </Row>
+
+
+
+        {/* <Grid fluid>
           <Row>
             <Col lg={3} sm={6}>
               <StatsCard
@@ -172,7 +221,7 @@ class Dashboard extends Component {
               />
             </Col>
           </Row>
-        </Grid>
+        </Grid> */}
       </div>
     );
   }
