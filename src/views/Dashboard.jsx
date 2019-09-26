@@ -16,24 +16,28 @@
 
 */
 import React, { Component } from "react";
-import ChartistGraph from "react-chartist";
+// import ChartistGraph from "react-chartist";
 import { Grid, Row, Col } from "react-bootstrap";
+import { Redirect, Link } from 'react-router-dom';
+// import { BrowserRouter, Route, Switch } from "react-router-dom";
+import CreatePost from "../views/experience/create-post.jsx";
+// import ReactDOM from "react-dom";
 
-import { Card } from "components/Card/Card.jsx";
-import { StatsCard } from "components/StatsCard/StatsCard.jsx";
-import { Tasks } from "components/Tasks/Tasks.jsx";
-import {
-  dataPie,
-  legendPie,
-  dataSales,
-  optionsSales,
-  responsiveSales,
-  legendSales,
-  dataBar,
-  optionsBar,
-  responsiveBar,
-  legendBar
-} from "variables/Variables.jsx";
+// import { Card } from "components/Card/Card.jsx";
+// import { StatsCard } from "components/StatsCard/StatsCard.jsx";
+// import { Tasks } from "components/Tasks/Tasks.jsx";
+// import {
+//   dataPie,
+//   legendPie,
+//   dataSales,
+//   optionsSales,
+//   responsiveSales,
+//   legendSales,
+//   dataBar,
+//   optionsBar,
+//   responsiveBar,
+//   legendBar
+// } from "variables/Variables.jsx";
 
 class Dashboard extends Component {
 
@@ -41,7 +45,8 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: false
+      menu: false,
+      isAdd: false
     };
   }
 
@@ -72,16 +77,41 @@ class Dashboard extends Component {
     return bodyHear;
   }
 
+  createPost = (e) => {
+    // const current = this.state.isAdd;
+    // this.setState({ isAdd: !current })
+    // return <Redirect to="/admin/dashboard/post" />
+    return <CreatePost {...this.props}/>
+  }
+
   render() {
     const site = ['Hà Nội', 'Đà Nẵng', 'Hồ Chí Minh'];
     const add = ['Phú Yên', 'Hà Giang', 'Lâm Đồng', 'Singapore', 'Ninh Bình'];
+    if (this.state.isAdd) {
 
+      // ReactDOM.render(
+      //   <BrowserRouter>
+      //     <Switch>
+      //       <Route path="/admin/dashboard" render={props => <CreatePost {...props} />} />
+      // <Redirect from="/admin/dashboard" to="/admin/dashboard/post" />
+      //       {/* <Route path="/login" exact component={Login} />
+      //       <Redirect from="/" to="/login" /> */} */}
+
+      //     </Switch>
+      //   </BrowserRouter>,
+      //   document.getElementById("root")
+      // );
+      // return <Redirect from="/" to="/admin/dashboard/post" />
+      return <Redirect to="/admin/dashboard/post" />
+      // return <Redirect to={{ pathname: '/admin/dashboard/post' }} />;
+    }
     return (
       <div className="content">
 
         <Row>
           <Col lg={3} sm={6}>
-            <button type="button" class="btn btn-primary">Tạo bài viết</button>
+            <button type="button" className="btn btn-primary" onClick={this.createPost}>Tạo bài viết</button>
+            {/* <Link to='/admin/dashboard/post' className="btn btn-info mb-10">Create Product</Link> */}
           </Col>
 
         </Row>

@@ -15,7 +15,7 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      loggedIn: false,
+      loggedIn: true,
       username: null
     };
 
@@ -24,7 +24,7 @@ export default class Login extends Component {
   }
   
   componentDidMount() {
-    this.getUser()
+    // this.getUser()
   }
 
   getUser() {
@@ -45,7 +45,7 @@ export default class Login extends Component {
       } else {
         console.log('Get user: no user');
         this.setState({
-          loggedIn: false,
+          loggedIn: true,
           username: null
         })
       }

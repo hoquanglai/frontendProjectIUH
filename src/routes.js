@@ -24,8 +24,18 @@ import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
 import Upgrade from "views/Upgrade.jsx";
 import Login from "views/Login";
+import CreatePost from "views/experience/create-post.jsx";
 
 const dashboardRoutes = [
+
+  {
+    path: "/post",
+    // name: "Địa Điểm",
+    // icon: "pe-7s-map-marker",
+    component: CreatePost,
+    layout: "/admin/dashboard"
+  },
+
   {
     path: "/dashboard",
     name: "Chia Sẽ Kinh Nghiệm",
