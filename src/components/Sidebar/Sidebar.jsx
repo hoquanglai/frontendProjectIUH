@@ -48,48 +48,37 @@ class Sidebar extends Component {
         id="sidebar"
         className="sidebar"
         data-color={this.props.color}
-        data-image={this.props.image}
-      >
-          {this.props.hasImage ? (
-            <div className="sidebar-background" style={sidebarBackground} />
-          ) : (
-            null
-          )}
+        data-image={this.props.image}>
+        {this.props.hasImage ? ( <div className="sidebar-background" style={sidebarBackground} />)  : ( null )}
         <div className="logo">
           <a
             href="#"
-            className="simple-text logo-mini"
-          >
+            className="simple-text logo-mini">
             <div className="logo-img">
               <img src={logo} alt="logo_image" />
             </div>
           </a>
           <a
             href="#"
-            className="simple-text logo-normal"
-          >
+            className="simple-text logo-normal">
             Du Lịch
           </a>
         </div>
         <div className="sidebar-wrapper">
           <ul className="nav">
-            {this.state.width <= 991 ? <AdminNavbarLinks /> : null}
+            {/* {this.state.width <= 991 ? <AdminNavbarLinks /> : null} */}
             {this.props.routes.map((prop, key) => {
               if (!prop.redirect)
                 return (
                   <li
-                    className={
-                      prop.upgrade
-                        ? "active active-pro"
-                        : this.activeRoute(prop.layout + prop.path)
-                    }
-                    key={key}
-                  >
+                    // className={
+                    //   prop.upgrade ? "active active-pro" : this.activeRoute(prop.layout + prop.path)
+                    // }
+                    key={key}>
                     <NavLink
-                      to={prop.layout + prop.path}
+                      to={prop.path}
                       className="nav-link"
-                      activeClassName="active"
-                    >
+                      activeClassName="active">
                       <i className={prop.icon} />
                       <p>{prop.name}</p>
                     </NavLink>

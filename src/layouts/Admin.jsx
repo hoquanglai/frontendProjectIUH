@@ -16,7 +16,7 @@
 
 */
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
 
 import AdminNavbar from "components/Navbars/AdminNavbar";
@@ -24,7 +24,7 @@ import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
-import { style } from "variables/Variables.jsx";
+import { style } from "../variables/Variables.jsx";
 
 import routes from "routes.js";
 
@@ -87,19 +87,21 @@ class Admin extends Component {
         //     )}
         //     key={key}
         //   />
-        // );        
+        // );
         const x = (
-          <Route
-            path={prop.layout + prop.path}
-            render={props => (
-              <prop.component
-                {...props}
-                handleClick={this.handleNotificationClick}
-              />
-            )}
+          <Route path={prop.path}
+            // render={props => (
+            //     <prop.component
+            //       {...props}
+            //       handleClick={this.handleNotificationClick}
+            //     />
+            //   )}
+            component={prop.component}
             key={key}
           />
         );
+        console.log(x);
+
         return x;
       } else {
         return null;
@@ -108,11 +110,7 @@ class Admin extends Component {
   };
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
-      if (
-        this.props.location.pathname.indexOf(
-          routes[i].layout + routes[i].path
-        ) !== -1
-      ) {
+      if (this.props.location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].name;
       }
     }
@@ -135,69 +133,92 @@ class Admin extends Component {
     }
   };
   componentDidMount() {
-    this.setState({ _notificationSystem: this.refs.notificationSystem });
-    var _notificationSystem = this.refs.notificationSystem;
-    var color = Math.floor(Math.random() * 4 + 1);
-    var level;
-    switch (color) {
-      case 1:
-        level = "success";
-        break;
-      case 2:
-        level = "warning";
-        break;
-      case 3:
-        level = "error";
-        break;
-      case 4:
-        level = "info";
-        break;
-      default:
-        break;
-    }
-    _notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-gift" />,
-      message: (
-        <div>
-          Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for
-          every web developer.
-        </div>
-      ),
-      level: level,
-      position: "tr",
-      autoDismiss: 15
-    });
+    // this.setState({ _notificationSystem: this.refs.notificationSystem });
+    // var _notificationSystem = this.refs.notificationSystem;
+    // var color = Math.floor(Math.random() * 4 + 1);
+    // var level;
+    // switch (color) {
+    //   case 1:
+    //     level = "success";
+    //     break;
+    //   case 2:
+    //     level = "warning";
+    //     break;
+    //   case 3:
+    //     level = "error";
+    //     break;
+    //   case 4:
+    //     level = "info";
+    //     break;
+    //   default:
+    //     break;
+    // }
+    // _notificationSystem.addNotification({
+    //   title: <span data-notify="icon" className="pe-7s-gift" />,
+    //   message: (
+    //     <div>
+    //       Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for
+    //       every web developer.
+    //     </div>
+    //   ),
+    //   level: level,
+    //   position: "tr",
+    //   autoDismiss: 15
+    // });
   }
   componentDidUpdate(e) {
-    if (
-      window.innerWidth < 993 &&
-      e.history.location.pathname !== e.location.pathname &&
-      document.documentElement.className.indexOf("nav-open") !== -1
-    ) {
-      document.documentElement.classList.toggle("nav-open");
-    }
-    if (e.history.action === "PUSH") {
-      document.documentElement.scrollTop = 0;
-      document.scrollingElement.scrollTop = 0;
-      this.refs.mainPanel.scrollTop = 0;
-    }
+    // if (
+    //   window.innerWidth < 993 &&
+    //   e.history.location.pathname !== e.location.pathname &&
+    //   document.documentElement.className.indexOf("nav-open") !== -1
+    // ) {
+    //   document.documentElement.classList.toggle("nav-open");
+    // }
+    // if (e.history.action === "PUSH") {
+    //   document.documentElement.scrollTop = 0;
+    //   document.scrollingElement.scrollTop = 0;
+    //   this.refs.mainPanel.scrollTop = 0;
+    // }
   }
+
   render() {
     return (
+      // <Router>
       <div className="wrapper">
         <NotificationSystem ref="notificationSystem" style={style} />
+
         <Sidebar {...this.props} routes={routes} image={this.state.image}
-        color={this.state.color}
-        hasImage={this.state.hasImage}/>
+          color={this.state.color}
+          hasImage={this.state.hasImage} />
+
         <div id="main-panel" className="main-panel" ref="mainPanel">
           <AdminNavbar
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
           />
-          <Switch>{this.getRoutes(routes)}</Switch>
+          {/* <Switch>{this.getRoutes(routes)}</Switch> */}
+          {console.log(routes)
+          }
+          <Switch>
+            {
+              routes.map((route, index) => {
+                return route.component ? (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    name={route.name}
+                    render={props => (<route.component {...props} />)}
+                  />
+                ) : null;
+              })}
+            <Redirect from="/" to="/dashboard" />
+
+          </Switch>
+
           <Footer />
           <FixedPlugin
-            handleImageClick={this.handleImageClick}
+            handleImageClick={this.handleImageClick} F
             handleColorClick={this.handleColorClick}
             handleHasImage={this.handleHasImage}
             bgColor={this.state["color"]}
@@ -208,6 +229,7 @@ class Admin extends Component {
           />
         </div>
       </div>
+      // </Router>
     );
   }
 }

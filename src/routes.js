@@ -15,159 +15,169 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Dashboard from "views/Dashboard.jsx";
-import UserProfile from "views/UserProfile.jsx";
-import TableList from "views/TableList.jsx";
-import Typography from "views/Typography.jsx";
-import Icons from "views/Icons.jsx";
-import Maps from "views/Maps.jsx";
-import Notifications from "views/Notifications.jsx";
-import Upgrade from "views/Upgrade.jsx";
-import Login from "views/Login";
-import CreatePost from "views/experience/create-post.jsx";
+// import UserProfile from "views/UserProfile.jsx";
+// import TableList from "views/TableList.jsx";
+// import Typography from "views/Typography.jsx";
+// import Icons from "views/Icons.jsx";
+// import Maps from "views/Maps.jsx";
+// import Notifications from "views/Notifications.jsx";
+// import Upgrade from "views/Upgrade.jsx";
+// import Login from "views/Login";
+// import CreatePost from "views/experience/create-post.jsx";
 
-const dashboardRoutes = [
+// const dashboardRoutes = [
+//   {
+//     path: "/dashboard",
+//     name: "Chia Sẽ Kinh Nghiệm",
+//     icon: "pe-7s-display1",
+//     component: Dashboard,
+//     layout: "/admin"
+//   },
+//   {
+//     path: "/user",
+//     name: "User Profile",
+//     icon: "pe-7s-user",
+//     component: UserProfile,
+//     layout: "/admin"
+//   },
+//   {
+//     path: "/table",
+//     name: "Du Lịch Quoanh Đây",
+//     icon: "pe-7s-bicycle",
+//     component: TableList,
+//     layout: "/admin"
+//   },
+//   {
+//     path: "/typography",
+//     name: "Lịch Phượt",
+//     icon: "pe-7s-date",
+//     component: Typography,
+//     layout: "/admin"
+//   },
+//   {
+//     path: "/icons",
+//     name: "Du Lịch Theo Túi Tiền",
+//     icon: "pe-7s-science",
+//     component: Icons,
+//     layout: "/admin"
+//   },
+//   {
+//     path: "/maps",
+//     name: "Địa Điểm",
+//     icon: "pe-7s-map-marker",
+//     component: Maps,
+//     layout: "/admin"
+//   },
+//   {
+//     path: "/notifications",
+//     name: "Notifications",
+//     icon: "pe-7s-bell",
+//     component: Notifications,
+//     layout: "/admin"
+//   },
+//   {
+//     upgrade: true,
+//     path: "/upgrade",
+//     name: "Upgrade to PRO",
+//     icon: "pe-7s-rocket",
+//     component: Upgrade,
+//     layout: "/admin"
+//   }
+//   ,
+//   {
+//     upgrade: true,
+//     path: "/login",
+//     name: "Login",
+//     icon: "pe-7s-rocket",
+//     component: Login,
+//     layout: "/admin"
+//   },
+//   {
+//     path: "/post",
+//     // name: "Địa Điểm",
+//     // icon: "pe-7s-map-marker",
+//     component: CreatePost,
+//     layout: "/admin"
+//   },
+// {
+//   path: "/dashboard",
+//   name: "Dashboard",
+//   icon: "pe-7s-graph",
+//   component: Dashboard,
+//   layout: "/admin"
+// },
+// {
+//   path: "/user",
+//   name: "User Profile",
+//   icon: "pe-7s-user",
+//   component: UserProfile,
+//   layout: "/admin"
+// },
+// {
+//   path: "/table",
+//   name: "Table List",
+//   icon: "pe-7s-note2",
+//   component: TableList,
+//   layout: "/admin"
+// },
+// {
+//   path: "/typography",
+//   name: "Typography",
+//   icon: "pe-7s-news-paper",
+//   component: Typography,
+//   layout: "/admin"
+// },
+// {
+//   path: "/icons",
+//   name: "Icons",
+//   icon: "pe-7s-science",
+//   component: Icons,
+//   layout: "/admin"
+// },
+// {
+//   path: "/maps",
+//   name: "Maps",
+//   icon: "pe-7s-map-marker",
+//   component: Maps,
+//   layout: "/admin"
+// },
+// {
+//   path: "/notifications",
+//   name: "Notifications",
+//   icon: "pe-7s-bell",
+//   component: Notifications,
+//   layout: "/admin"
+// },
+// {
+//   upgrade: true,
+//   path: "/upgrade",
+//   name: "Upgrade to PRO",
+//   icon: "pe-7s-rocket",
+//   component: Upgrade,
+//   layout: "/admin"
+// }
+// ,
+// {
+//   upgrade: true,
+//   path: "/login",
+//   name: "Login",
+//   icon: "pe-7s-rocket",
+//   component: Login,
+//   layout: "/admin"
+// }
+// ];
 
-  {
-    path: "/post",
-    // name: "Địa Điểm",
-    // icon: "pe-7s-map-marker",
-    component: CreatePost,
-    layout: "/admin/dashboard"
-  },
+// export default dashboardRoutes;
+import React from 'react';
+// import Dashboard from "views/Dashboard.jsx";
 
-  {
-    path: "/dashboard",
-    name: "Chia Sẽ Kinh Nghiệm",
-    icon: "pe-7s-display1",
-    component: Dashboard,
-    layout: "/admin"
-  },
-  {
-    path: "/user",
-    name: "User Profile",
-    icon: "pe-7s-user",
-    component: UserProfile,
-    layout: "/admin"
-  },
-  {
-    path: "/table",
-    name: "Du Lịch Quoanh Đây",
-    icon: "pe-7s-bicycle",
-    component: TableList,
-    layout: "/admin"
-  },
-  {
-    path: "/typography",
-    name: "Lịch Phượt",
-    icon: "pe-7s-date",
-    component: Typography,
-    layout: "/admin"
-  },
-  {
-    path: "/icons",
-    name: "Du Lịch Theo Túi Tiền",
-    icon: "pe-7s-science",
-    component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Địa Điểm",
-    icon: "pe-7s-map-marker",
-    component: Maps,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "pe-7s-bell",
-    component: Notifications,
-    layout: "/admin"
-  },
-  {
-    upgrade: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "pe-7s-rocket",
-    component: Upgrade,
-    layout: "/admin"
-  }
-  ,
-  {
-    upgrade: true,
-    path: "/login",
-    name: "Login",
-    icon: "pe-7s-rocket",
-    component: Login,
-    layout: "/admin"
-  }
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   icon: "pe-7s-graph",
-  //   component: Dashboard,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/user",
-  //   name: "User Profile",
-  //   icon: "pe-7s-user",
-  //   component: UserProfile,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/table",
-  //   name: "Table List",
-  //   icon: "pe-7s-note2",
-  //   component: TableList,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/typography",
-  //   name: "Typography",
-  //   icon: "pe-7s-news-paper",
-  //   component: Typography,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/icons",
-  //   name: "Icons",
-  //   icon: "pe-7s-science",
-  //   component: Icons,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/maps",
-  //   name: "Maps",
-  //   icon: "pe-7s-map-marker",
-  //   component: Maps,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/notifications",
-  //   name: "Notifications",
-  //   icon: "pe-7s-bell",
-  //   component: Notifications,
-  //   layout: "/admin"
-  // },
-  // {
-  //   upgrade: true,
-  //   path: "/upgrade",
-  //   name: "Upgrade to PRO",
-  //   icon: "pe-7s-rocket",
-  //   component: Upgrade,
-  //   layout: "/admin"
-  // }
-  // ,
-  // {
-  //   upgrade: true,
-  //   path: "/login",
-  //   name: "Login",
-  //   icon: "pe-7s-rocket",
-  //   component: Login,
-  //   layout: "/admin"
-  // }
+const Dashboard = React.lazy(() => import('./views/Dashboard'));
+const CreatePost = React.lazy(() => import('./views/experience/create-post'));
+
+const routes = [
+  // { path: '/', exact: true },
+  { path: '/dashboard', exact: true, name: "Chia Sẽ Kinh Nghiệm", icon: "pe-7s-display1", component: Dashboard },
+  { path: '/dashboard/post', component: CreatePost }
+
 ];
-
-export default dashboardRoutes;
+ export default routes;
