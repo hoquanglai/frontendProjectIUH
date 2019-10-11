@@ -61,7 +61,7 @@ import "./assets/css/animate.min.css";
 import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
 import "./assets/css/demo.css";
 import "./assets/css/pe-icon-7-stroke.css";
-
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 const app = <App />
 
 ReactDOM.render(app, document.getElementById("root"));
