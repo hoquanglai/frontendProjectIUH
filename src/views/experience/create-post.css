@@ -31,3 +31,13 @@
 .remove {
     color: red;
 }
+.input-padding {
+    padding-bottom: 5px;
+}
+.react-datepicker-wrapper {
+    width: 90%;
+}
+.width-input {
+    width: 90%;
+    display: inline-block;
+}

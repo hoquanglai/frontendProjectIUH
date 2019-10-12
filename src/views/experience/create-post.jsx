@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import "./create-post.css";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class CreatePost extends Component {
     constructor(props) {
@@ -41,19 +43,58 @@ class CreatePost extends Component {
     }
 
     addFile(file) {
-    
+
         this.setState((preState) => ({ loadFile: [...preState.loadFile, file] }))
     }
 
     removeFile = (file) => {
-        this.setState({loadFile: []});
+        this.setState({ loadFile: [] });
     }
 
 
     render() {
         const { loadFile } = this.state;
         return (
-            <div className="content">  
+            <div className="content">
+
+                <Row className="input-padding">
+                    <Col lg={3} sm={3}>
+                        <span>Tiêu Đề bài viết</span>
+                    </Col>
+                    <Col lg={6} sm={6}>
+                        <input type="text" placeholder="Tiêu đề" className="form-control" />
+                    </Col>
+                </Row>
+                <Row className="input-padding">
+                    <Col lg={3} sm={3}>
+                        <span>Giới thiệu</span>
+                    </Col>
+                    <Col lg={6} sm={6}>
+                        <textarea type="text" placeholder="Giới Thiệu" className="form-control" />
+                    </Col>
+                </Row>
+
+                <Row className="input-padding">
+                    <Col lg={3} sm={3}>
+                        <i class="fa fa-calendar"></i>
+                        <DatePicker
+                            className="form-control"
+                            selected={new Date()}
+                            // onChange={date => setStartDate(date)}
+                            isClearable={true}
+                            placeholderText="I have been cleared!"
+                        />
+                    </Col>
+                    <Col lg={3} sm={3}>
+                        <i class="fa fa-dollar"></i>
+                        <input type="text" placeholder="Tiền" className="form-control width-input" />
+                    </Col>
+                    <Col lg={3} sm={3}>
+                        <i class="fa fa-hourglass-start"></i>
+                        <input type="text" placeholder="Số Ngày" className="form-control width-input" />
+                    </Col>
+                </Row>
+
                 <Row>
                     <Col lg={3} sm={3}>
                         <div className="poster">
