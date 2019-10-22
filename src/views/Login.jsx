@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+// const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
+import { HashRouter } from 'react-router-dom';
 import "./Login.css";
 // import React from "react";
 import ReactDOM from "react-dom";
-import AdminLayout from "layouts/Admin.jsx";
+import Admin from "layouts/Admin.jsx";
 import axios from 'axios'
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import App from "App";
+import admin from "./admin.jsx";
 
 export default class Login extends Component {
   constructor(props) {
@@ -15,11 +19,11 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      loggedIn: true,
-      username: null
+      // loggedIn: true,
+      // username: null
     };
 
-    this.getUser = this.getUser.bind(this)
+    // this.getUser = this.getUser.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
   }
   
@@ -27,30 +31,30 @@ export default class Login extends Component {
     // this.getUser()
   }
 
-  getUser() {
-    axios.get('/getInfo/',
-    {
-      username: 'aa',
-      password: 'this.state.password'
-    }).then(response => {
-      console.log('Get user response: ')
-      console.log(response.data)
-      if (response.data.username) {
-        console.log('Get User: There is a user saved in the server session: ')
+  // getUser() {
+  //   axios.get('/getInfo/',
+  //   {
+  //     username: 'aa',
+  //     password: 'this.state.password'
+  //   }).then(response => {
+  //     console.log('Get user response: ')
+  //     console.log(response.data)
+  //     if (response.data.username) {
+  //       console.log('Get User: There is a user saved in the server session: ')
 
-        this.setState({
-          loggedIn: true,
-          username: response.data.username
-        })
-      } else {
-        console.log('Get user: no user');
-        this.setState({
-          loggedIn: true,
-          username: null
-        })
-      }
-    })
-  }
+  //       this.setState({
+  //         loggedIn: true,
+  //         username: response.data.username
+  //       })
+  //     } else {
+  //       console.log('Get user: no user');
+  //       this.setState({
+  //         loggedIn: true,
+  //         username: null
+  //       })
+  //     }
+  //   })
+  // }
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -63,20 +67,19 @@ export default class Login extends Component {
   }
 
   handleSubmit = event => {
-    ReactDOM.render(
-      <BrowserRouter>
-        <Switch>
-          <Route path="/admin" render={props => <AdminLayout {...props} />} />
-          <Redirect from="/" to="/admin/dashboard" />
-          {/* <Route path="/login" exact component={Login} />
-          <Redirect from="/" to="/login" /> */} */}
-          
-        </Switch>
-      </BrowserRouter>,
-      document.getElementById("root")
-    );
-    
-    
+    return (
+      <HashRouter>
+          {/* <React.Suspense fallback={loading()}> */}
+          <Switch>
+              {/* <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} /> */}
+              {/* <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} /> */}
+              {/* <Route exact path="/404" name="Page 404" render={props => <Page404 {...props} />} /> */}
+              {/* <Route exact path="/500" name="Page 500" render={props => <Page500 {...props} />} /> */}
+              <Route path="/" render={props => <Admin {...props} />} />
+          </Switch>
+          {/* </React.Suspense> */}
+      </HashRouter>
+  )
   }
 
   render() {

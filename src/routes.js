@@ -172,12 +172,19 @@ import React from 'react';
 // import Dashboard from "views/Dashboard.jsx";
 
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
+const UserProfile = React.lazy(() => import('./views/UserProfile'));
 const CreatePost = React.lazy(() => import('./views/experience/create-post'));
 
 const routes = [
   // { path: '/', exact: true },
   { path: '/dashboard', exact: true, name: "Chia Sẽ Kinh Nghiệm", icon: "pe-7s-display1", component: Dashboard },
-  { path: '/dashboard/post', component: CreatePost }
+  { path: '/dashboard/post', component: CreatePost },
+  { path: "/user", exact: true, name: "User Profile", icon: "pe-7s-user",component: UserProfile},
+  { path: "/user", exact: true, name: "User Profile", icon: "pe-7s-user",component: UserProfile},
+  { path: "/user", exact: true, name: "User Profile", icon: "pe-7s-user",component: UserProfile},
+  { path: "/user", exact: true, name: "User Profile", icon: "pe-7s-user",component: UserProfile},
+  { path: "/user", exact: true, name: "User Profile", icon: "pe-7s-user",component: UserProfile},
+  { path: "/user", exact: true, name: "User Profile", icon: "pe-7s-user",component: UserProfile},
 
 ];
  export default routes;

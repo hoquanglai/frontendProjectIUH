@@ -5,8 +5,11 @@ import Login from "views/Login.jsx";
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
-class App extends Component {
+class admin extends Component {
+    
+    
     render() {
+        console.log("fffffffffffffffffffffffffffff");
         return (
             <HashRouter>
                 <React.Suspense fallback={loading()}>
@@ -15,7 +18,7 @@ class App extends Component {
                     {/* <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} /> */}
                     {/* <Route exact path="/404" name="Page 404" render={props => <Page404 {...props} />} /> */}
                     {/* <Route exact path="/500" name="Page 500" render={props => <Page500 {...props} />} /> */}
-                    <Route path="/" render={props => <Login {...props} />} />
+                    <Route path="/" render={props => <Admin {...props} />} />
                 </Switch>
                 </React.Suspense>
             </HashRouter>
@@ -23,4 +26,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default admin;
