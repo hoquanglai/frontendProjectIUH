@@ -17,10 +17,12 @@
 */
 import React, { Component } from "react";
 // import ChartistGraph from "react-chartist";
-import { Grid, Row, Col } from "react-bootstrap";
-import { Redirect, Link } from 'react-router-dom';
-// import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
+import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, NavLink } from "react-router-dom";
 import CreatePost from "../views/experience/create-post.jsx";
+// import routes from "routes.js";
+
 // import ReactDOM from "react-dom";
 
 // import { Card } from "components/Card/Card.jsx";
@@ -70,55 +72,50 @@ class Dashboard extends Component {
     const bodyHear = data.map((element, index) => {
       return (
         <div className="col-sm-3 col-xs-3" key={index++}>
-          <a>{element}</a>
+          <span>{element}</span>
         </div>
       )
     });
     return bodyHear;
   }
 
+  getRoutes = (routes) => {
+    console.log(routes);
+    
+  }
+
   createPost = (e) => {
-    // const current = this.state.isAdd;
-    // this.setState({ isAdd: !current })
+    const current = this.state.isAdd;
+    this.setState({ isAdd: !current })
     // return <Redirect to="/admin/dashboard/post" />
-    return <CreatePost {...this.props}/>
+    // return <CreatePost {...this.props}/>
   }
 
   render() {
     const site = ['Hà Nội', 'Đà Nẵng', 'Hồ Chí Minh'];
     const add = ['Phú Yên', 'Hà Giang', 'Lâm Đồng', 'Singapore', 'Ninh Bình'];
     if (this.state.isAdd) {
+      // <Route path="/post" component={CreatePost}></Route>
 
-      // ReactDOM.render(
-      //   <BrowserRouter>
-      //     <Switch>
-      //       <Route path="/admin/dashboard" render={props => <CreatePost {...props} />} />
-      // <Redirect from="/admin/dashboard" to="/admin/dashboard/post" />
-      //       {/* <Route path="/login" exact component={Login} />
-      //       <Redirect from="/" to="/login" /> */} */}
-
-      //     </Switch>
-      //   </BrowserRouter>,
-      //   document.getElementById("root")
-      // );
-      // return <Redirect from="/" to="/admin/dashboard/post" />
-      return <Redirect to="/admin/dashboard/post" />
-      // return <Redirect to={{ pathname: '/admin/dashboard/post' }} />;
+      return <Redirect to="/dashboard/post" />
     }
     return (
+      // <Router>
       <div className="content">
+        {/* <Switch>{this.getRoutes(routes)}</Switch> */}
 
         <Row>
           <Col lg={3} sm={6}>
             <button type="button" className="btn btn-primary" onClick={this.createPost}>Tạo bài viết</button>
-            {/* <Link to='/admin/dashboard/post' className="btn btn-info mb-10">Create Product</Link> */}
+
+            {/* <Link to='/post' className="btn btn-info mb-10">Create Product</Link> */}
           </Col>
 
         </Row>
         <Row>
           {this.createHtml(site)}
           <div className="col-sm-3 col-xs-3">
-            <a onClick={this.toggleMenu}>Xem thêm ...</a>
+            <button onClick={this.toggleMenu}>Xem thêm ...</button>
           </div>
           <div>
             {this.state.menu ? this.createHtml(add) : ''}
@@ -253,6 +250,8 @@ class Dashboard extends Component {
           </Row>
         </Grid> */}
       </div>
+      // <Route path="/post" component={CreatePost}></Route>
+      // </Router>
     );
   }
 }

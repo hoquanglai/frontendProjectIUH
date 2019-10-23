@@ -1,0 +1,43 @@
+
+.poster {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.poster input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.Icon {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.image {
+    height: 150px;
+}
+.remove {
+    color: red;
+}
+.input-padding {
+    padding-bottom: 5px;
+}
+.react-datepicker-wrapper {
+    width: 90%;
+}
+.width-input {
+    width: 90%;
+    display: inline-block;
+}
