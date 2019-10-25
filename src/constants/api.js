@@ -6,6 +6,7 @@ const apis = {
     URL_API: URL_API,
     USER_API: `${URL_API}/account`,
     PRODUCT_API: `${URL_API}`,
+    ADDRESS_API: `${URL_API}/address`
 }
 
 export default apis;
