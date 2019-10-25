@@ -37,9 +37,11 @@ class Dashboard extends Component {
     // console.log(data);
     const bodyHear = data.map((element, index) => {
       return (
-        <div className="col-sm-3 col-xs-3" key={index++}>
-          <span>{element}</span>
+        <div className="col-sm-2 col-xs-2" key={index++}>
+          {/* <span>{element}</span> */}
+          <button type="button" className="btn btn-primary" onClick={this.createPost}>{element}</button>
         </div>
+        
       )
     });
     return bodyHear;
@@ -56,17 +58,14 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    console.log("data: " + addressSevice.findAll().data);
     addressSevice.findAll().then(res =>  {
-      // this.setState({ address: data })
-      console.log("data: " + res.data);
+      this.setState({ address: res.data })
+      console.log("data: " + this.state);
     })
   }
 
   render() {
-    // const site = this.state.address;
-    // console.log("ssssssssssssssssssssssss" + site);
-    
+
     const add = ['Phú Yên', 'Hà Giang', 'Lâm Đồng', 'Singapore', 'Ninh Bình'];
     if (this.state.isAdd) {
       return <Redirect to="/dashboard/post" />
@@ -75,20 +74,20 @@ class Dashboard extends Component {
       // <Router>
       <div className="content">
 
-        <Row>
+        {/* <Row>
           <Col lg={3} sm={6}>
             <button type="button" className="btn btn-primary" onClick={this.createPost}>Tạo bài viết</button>
           </Col>
 
-        </Row>
+        </Row> */}
         <Row>
-          {/* {this.createHtml(this.state.address)} */}
-          <div className="col-sm-3 col-xs-3">
+          {this.createHtml(add)}
+          {/* <div className="col-sm-3 col-xs-3">
             <button onClick={this.toggleMenu}>Xem thêm ...</button>
           </div>
           <div>
-            {this.state.menu ? this.createHtml(add) : ''}
-          </div>
+            {this.state.menu ? this.createHtml(add) : ''} */}
+          {/* </div> */}
 
         </Row>
 
