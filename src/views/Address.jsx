@@ -34,7 +34,7 @@ class Dashboard extends Component {
   }
 
   createHtml = (data) => {
-    console.log(data);
+    // console.log(data);
     const bodyHear = data.map((element, index) => {
       return (
         <div className="col-sm-3 col-xs-3" key={index++}>
@@ -46,7 +46,7 @@ class Dashboard extends Component {
   }
 
   getRoutes = (routes) => {
-    console.log(routes);
+    // console.log(routes);
     
   }
 
@@ -56,9 +56,10 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    addressSevice.findAll().then((res) => res.json()).then(json => {
+    console.log("data: " + addressSevice.findAll().data);
+    addressSevice.findAll().then(res =>  {
       // this.setState({ address: data })
-      console.log("data: " + json);
+      console.log("data: " + res.data);
     })
   }
 
