@@ -1,0 +1,27 @@
+.rowPosts {
+    /* margin-left: 10%; */
+    /* https://html-css-js.com/css/generator/border-outline/ */
+    border: 3px solid rgba(28,110,164,0.06);
+    margin-bottom: 5%;
+    margin-left: 2%;
+    margin-top: -1%;
+    background-color: white;
+}
+ .img-rounded {
+    width: 100%;
+    height: 100%;
+    /* margin-left: -2%;
+    margin-left: -7%; */
+    margin-top: 2%;
+} 
+.title {
+    height: 30px;
+    margin-top: 5%;
+    margin-left: -2%;
+    font-size: 25px;
+}
+.Avatar {
+    border-radius: 50%;
+    width: 8%;
+    height: 80%;
+  }

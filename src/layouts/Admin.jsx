@@ -1,24 +1,6 @@
-/*!
-
-=========================================================
-* Light Bootstrap Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { Component } from "react";
 import { Redirect, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
-
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
@@ -26,10 +8,9 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 import './Admin.css';
 
 import { style } from "../variables/Variables.jsx";
-
 import routes from "routes.js";
-
 import image from "assets/img/sidebar-3.jpg";
+import "./Admin.css";
 
 class Admin extends Component {
   constructor(props) {
@@ -218,7 +199,7 @@ class Admin extends Component {
           </Switch>
 
           <Footer />
-          <FixedPlugin
+          {/* <FixedPlugin
             handleImageClick={this.handleImageClick} F
             handleColorClick={this.handleColorClick}
             handleHasImage={this.handleHasImage}
@@ -227,7 +208,7 @@ class Admin extends Component {
             mini={this.state["mini"]}
             handleFixedClick={this.handleFixedClick}
             fixedClasses={this.state.fixedClasses}
-          />
+          /> */}
         </div>
       </div>
       // </Router>
