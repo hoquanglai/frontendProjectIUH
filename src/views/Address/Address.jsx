@@ -3,8 +3,8 @@ import React, { Component } from "react";
 // import ChartistGraph from "react-chartist";
 import { Row, Col } from "react-bootstrap";
 import { Redirect } from 'react-router-dom';
-import { BrowserRouter as Router, Route, Switch, Link, NavLink } from "react-router-dom";
 import addressSevice from "sevice/address.sevice";
+import './Address.css'
 
 class Dashboard extends Component {
 
@@ -39,7 +39,7 @@ class Dashboard extends Component {
       return (
         <div className="col-sm-2 col-xs-2" key={index++}>
           {/* <span>{element}</span> */}
-          <button type="button" className="btn btn-primary" onClick={this.createPost}>{element}</button>
+          <button type="button" className="btn btn-primary" onClick={this.createPost}>{element.name}</button>
         </div>
         
       )
@@ -60,7 +60,7 @@ class Dashboard extends Component {
   componentDidMount() {
     addressSevice.findAll().then(res =>  {
       this.setState({ address: res.data })
-      console.log("data: " + this.state);
+      console.log("data: " , this.state);
     })
   }
 
@@ -81,7 +81,7 @@ class Dashboard extends Component {
 
         </Row> */}
         <Row>
-          {this.createHtml(add)}
+          {this.createHtml(this.state.address)}
           {/* <div className="col-sm-3 col-xs-3">
             <button onClick={this.toggleMenu}>Xem thêm ...</button>
           </div>
