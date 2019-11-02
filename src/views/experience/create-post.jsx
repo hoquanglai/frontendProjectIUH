@@ -12,15 +12,17 @@ class CreatePost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loadFile: [],
-            startDate: new Date(),
-            topic: '',
-            description: '',
-            money: '',
-            numberOfDay: 0,
             file: new FormData(),
+            loadFile: [],
+            post: {
+                startDate: new Date(),
+                topic: '',
+                description: '',
+                money: '',
+                numberOfDay: 0,
+                imageId: ''
+            }
         }
-        
     }
 
     componentDidMount() {
@@ -64,7 +66,9 @@ class CreatePost extends Component {
     handleStartDate = (date) => {
         console.log(date);
         this.setState({
-            startDate: date,
+            post: {
+                startDate: date,
+            }
         })
     }
 
@@ -73,7 +77,10 @@ class CreatePost extends Component {
         var name = target.name;
         var value = target.value;
         this.setState({
-            [name]: value
+            post: {
+                ...this.state.post,
+                [name]: value
+            }
         })
     }
 
@@ -85,7 +92,9 @@ class CreatePost extends Component {
 
 
     render() {
-        const { loadFile, startDate } = this.state;
+        const { loadFile } = this.state;
+        const startDate = this.state.post.startDate;
+
         return (
             <div className="container">
                 <div className="row">
