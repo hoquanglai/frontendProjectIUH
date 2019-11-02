@@ -6,6 +6,10 @@ import { Redirect } from 'react-router-dom';
 import './Dashboard.css'
 import 'font-awesome/css/font-awesome.min.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
+import { connect } from 'react-redux';
+import { actListPostRequest } from './../../redux/action/index';
+
+
 
 var baiviets = [
   {
@@ -28,13 +32,16 @@ var baiviets = [
 
 class Dashboard extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
       menu: false,
       isAdd: false
     };
+  }
+
+  componentDidMount() {
+    this.props.fetchAllPost();
   }
 
   toggleMenu = () => {
@@ -55,6 +62,7 @@ class Dashboard extends Component {
   createHtml = (data) => {
     console.log(data);
     const bodyHear = data.map((element, index) => {
+      const image = "https://drive.google.com/uc?export=view&id=" + element.imageId;
       return (
         <div className="container" key={index}>
           <div className="row">
@@ -69,7 +77,7 @@ class Dashboard extends Component {
 
                 <div className="row">
                   <div className="col-sm-9 col-xs-9">
-                    <Image src={element.image} rounded />
+                    <Image src={image} />
                   </div>
                 </div>
                 <div className="row title" >
@@ -110,13 +118,19 @@ class Dashboard extends Component {
     if (this.state.isAdd) {
       return <Redirect to="/dashboard/post" />
     }
+
+    const postAll = this.props.postAll
+
+    console.log(this.props.postAll);
+    
+
     return (
       <div className="content">
         <Row>
-          <div class="container">
+          <div className="container">
 
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="row">
+              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div className="d-flex flex-row-reverse bd-highlight">
                   <div className="p-2 bd-highlight">
                     <button type="button" className="btn btn-primary" onClick={this.createPost}>Tạo bài viết</button>
@@ -132,7 +146,7 @@ class Dashboard extends Component {
 
 
         <Row className="image">
-          {this.createHtml(baiviets)}
+          {this.createHtml(postAll)}
           {/* <div className="col-sm-3 col-xs-3">
             <button onClick={this.toggleMenu}>Xem thêm ...</button>
           </div>
@@ -146,4 +160,18 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+  return {
+    postAll: state.posts
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAllPost: () => {
+      dispatch(actListPostRequest());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
