@@ -2,10 +2,12 @@ import * as Types from '../constant/Actiontype';
 import callAPI from "utils/apiCaller";
 
 
-export const actListPostRequest = () => {
+export const actListPostRequest = (state) => {
     return (dispatch) => {
-        return callAPI('post/get', 'GET', null).then(res => {
-            // console.log(res);
+        console.log(state);
+        
+        return callAPI(`post/get?start=${state.start}&end=${state.limit}`, 'GET', null).then(res => {
+            console.log(res);
             dispatch(actListPostToStore(res.data))
         })
     }

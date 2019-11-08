@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import { connect } from 'react-redux';
 import { actListPostRequest } from './../../redux/action/index';
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 var baiviets = [
@@ -36,12 +36,14 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       menu: false,
-      isAdd: false
+      isAdd: false,
+      start: 0,
+      limit: 3
     };
   }
 
   componentDidMount() {
-    this.props.fetchAllPost();
+    this.props.fetchAllPost(this.state);
   }
 
   toggleMenu = () => {
@@ -59,8 +61,22 @@ class Dashboard extends Component {
     return legend;
   }
 
+  loadData = () => {
+    const { start, limit } = this.state;
+    this.setState({ start: this.state.start + limit });
+    const aa = this.props.fetchAllPost(this.state);
+    // this.props.
+    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+    console.log(aa);
+    
+    // const dataconcat = this.props.postAll.concat(this.props.postAll);
+
+  }
+
   createHtml = (data) => {
-    console.log(data);
+    // console.log(data);
+
     const bodyHear = data.map((element, index) => {
       const image = "https://drive.google.com/uc?export=view&id=" + element.imageId;
       return (
@@ -77,7 +93,7 @@ class Dashboard extends Component {
 
                 <div className="row">
                   <div className="col-sm-9 col-xs-9">
-                    <Image src={image} />
+                    <Image src={image} className="size-image" />
                   </div>
                 </div>
                 <div className="row title" >
@@ -101,7 +117,17 @@ class Dashboard extends Component {
         </div>
       )
     });
-    return bodyHear;
+
+    return <InfiniteScroll
+      dataLength={data.length}
+      next={this.loadData}
+      hasMore={true}
+      loader={<h4>Loading ...</h4>}
+    >
+      {bodyHear}
+    </InfiniteScroll>
+
+    // return bodyHear;
   }
 
   getRoutes = (routes) => {
@@ -120,9 +146,8 @@ class Dashboard extends Component {
     }
 
     const postAll = this.props.postAll
-
     console.log(this.props.postAll);
-    
+
 
     return (
       <div className="content">
@@ -168,8 +193,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllPost: () => {
-      dispatch(actListPostRequest());
+    fetchAllPost: (state) => {
+      dispatch(actListPostRequest(state));
     }
   }
 }
