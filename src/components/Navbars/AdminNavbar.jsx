@@ -27,8 +27,7 @@ class Header extends Component {
     super(props);
     this.mobileSidebarToggle = this.mobileSidebarToggle.bind(this);
     this.state = {
-      sidebarExists: false,
-      isAdd: false
+      sidebarExists: false
     };
   }
   mobileSidebarToggle(e) {
@@ -48,20 +47,6 @@ class Header extends Component {
     document.body.appendChild(node);
   }
 
-  createPost = (e) => {
-    const current = this.state.isAdd;
-    this.setState({ isAdd: !current })
-    // return <Redirect to="/admin/dashboard/post" />
-    // return <CreatePost {...this.props}/>
-    console.log(this.state.isAdd);
-    
-    // if (this.state.isAdd) {
-    //   // <Route path="/post" component={CreatePost}></Route>
-
-    //   return <Redirect to="/dashboard/post" />
-    // }
-  }
-
   render() {
     // if (this.state.isAdd) {
     //   // <Route path="/post" component={CreatePost}></Route>
@@ -69,31 +54,19 @@ class Header extends Component {
     //   return <Redirect to="/dashboard/post" />
     // }
     return (
-      <div>
-
-        {/* <div className="d-flex flex-row-reverse bd-highlight">
-          <div className="p-2 bd-highlight">
-            <button type="button" className="btn btn-primary" onClick={this.createPost}>Tạo bài viết</button>
-          </div>
-          <div className="p-2 bd-highlight"></div>
-          <div className="p-2 bd-highlight"></div>
-        </div> */}
-
-        {/* <Row className="input-padding">
-          <Col lg={3} sm={3}>
-            <span>Tiêu Đề bài viết</span>
-          </Col>
-          <Col lg={3} sm={3}>
-            <input type="text" name="topic" placeholder="Tiêu đề" className="form-control" onChange={this.onHandleChange} />
-          </Col>
-          <Col lg={3} sm={3}>
-            <input type="text" name="topic" placeholder="Tiêu đề" className="form-control" onChange={this.onHandleChange} />
-          </Col>
-          <Col lg={3} sm={3}>
-            <input type="text" name="topic" placeholder="Tiêu đề" className="form-control" onChange={this.onHandleChange} />
-          </Col>
-        </Row> */}
-      </div>
+      <Navbar fluid>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a href="#pablo">{this.props.brandText}</a>
+          </Navbar.Brand>
+          <Navbar.Toggle onClick={this.mobileSidebarToggle} />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <AdminNavbarLinks />
+          {/* kalsjdklajskdljkl;asjdkl; */}
+        </Navbar.Collapse>
+      </Navbar>
+    
       // <Navbar fluid>
       //   <Navbar.Header>
       //     <Navbar.Brand>

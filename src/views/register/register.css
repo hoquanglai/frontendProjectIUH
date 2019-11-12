@@ -1,0 +1,14 @@
+.backgroud-register {
+    background: url(https://gody.vn/public/v3/images/bg/br-register.jpg);
+    height: 700px;
+}
+.register-form {
+    background: rgba(255,255,255,0.7);
+    width: 360px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    margin-top: 100px;
+}
+.input-padding {
+    padding-top: 15px;
+}

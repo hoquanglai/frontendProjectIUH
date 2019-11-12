@@ -18,25 +18,7 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 
-import Login from "../../views/Login";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-
 class AdminNavbarLinks extends Component {
-  
-
-handleClick = event => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Switch>
-        <Route path="/login" exact component={Login} />
-        <Redirect from="/" to="/login" /> */}
-      </Switch>
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
-}
-
   render() {
     const notification = (
       <div>
@@ -87,8 +69,8 @@ handleClick = event => {
             <MenuItem divider />
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
           </NavDropdown>
-          <NavItem eventKey={3} href="#" onClick={()=> this.handleClick() }>
-            Login
+          <NavItem eventKey={3} href="#">
+            Log out
           </NavItem>
         </Nav>
       </div>

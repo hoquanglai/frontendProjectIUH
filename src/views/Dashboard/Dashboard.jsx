@@ -38,7 +38,8 @@ class Dashboard extends Component {
       menu: false,
       isAdd: false,
       start: 0,
-      limit: 3
+      limit: 3,
+      register: false
     };
   }
 
@@ -65,13 +66,6 @@ class Dashboard extends Component {
     const { start, limit } = this.state;
     this.setState({ start: this.state.start + limit });
     const aa = this.props.fetchAllPost(this.state);
-    // this.props.
-    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-
-    console.log(aa);
-    
-    // const dataconcat = this.props.postAll.concat(this.props.postAll);
-
   }
 
   createHtml = (data) => {
@@ -137,12 +131,23 @@ class Dashboard extends Component {
 
   createPost = (e) => {
     const current = this.state.isAdd;
-    this.setState({ isAdd: !current })
+    const register = this.state.register;
+
+    if (register) {
+      // this.setState({ isAdd: !current })
+    } else {
+      this.setState({ register: !register })
+    }
+
   }
 
   render() {
     if (this.state.isAdd) {
       return <Redirect to="/dashboard/post" />
+    }
+
+    if (this.state.register) {
+      return <Redirect to="/register" />
     }
 
     const postAll = this.props.postAll

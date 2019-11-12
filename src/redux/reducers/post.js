@@ -1,8 +1,7 @@
 import * as Types from '../constant/Actiontype';
 
-
 var initialState = [];
-var abc = [];
+
 const post = (state= initialState, action) => {
     switch(action.type) {
         case Types.LIST_POST:

@@ -3,9 +3,10 @@ import { Redirect, Route, Switch, BrowserRouter as Router } from "react-router-d
 import NotificationSystem from "react-notification-system";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
+import Header from "components/header/Header";
+
 import Sidebar from "components/Sidebar/Sidebar";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
-import './Admin.css';
 
 import { style } from "../variables/Variables.jsx";
 import routes from "routes.js";
@@ -174,10 +175,11 @@ class Admin extends Component {
           hasImage={this.state.hasImage} />
 
         <div id="main-panel" className="main-panel" ref="mainPanel">
-          <AdminNavbar
+          <Header />
+          {/* <AdminNavbar
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
-          />
+          /> */}
           {/* <Switch>{this.getRoutes(routes)}</Switch> */}
           {console.log(routes)
           }
