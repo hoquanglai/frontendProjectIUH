@@ -4,14 +4,19 @@ import * as Types from '../constant/Actiontype';
 var initialState = [];
 
 const user = (state= initialState, action) => {
+    let newState = Object.assign({}, state);
     switch(action.type) {
         case Types.ADD_USER:
-            // state = state.concat(action.posts.post);
-            return [...state];
-        case Types.LIST_POST:
+            console.log(action.user);
+            
+            newState = action.user;
+            return newState;
+        case Types.LOGOUT_USER:
             // state.push(action.post);
-            return [...state];
-        default: return [...state];
+            newState = action.user;
+
+            return newState;
+        default: return state;
     }
 };
 

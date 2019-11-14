@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { actAddUserRequest } from './../../redux/action/user';
 import './register.css'
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 class Register extends Component {
     constructor(props) {
@@ -12,6 +14,7 @@ class Register extends Component {
             pwd: '',
             repwd: 0,
             email: '',
+            addPost: false,
         };
     }
 
@@ -27,10 +30,22 @@ class Register extends Component {
     onHandleSubmit = (event) => {
         event.preventDefault();
         console.log(this.state);
-        this.props.onAddUser(this.state);
+        var _self = this;
+        this.props.onAddUser(this.state, function(result) {
+            console.log(result.data.token);
+            const cookies = new Cookies();
+            cookies.set('auth-token', result.data.token, { path: '/' });
+            const newPost = _self.state.addPost;
+            _self.setState({addPost: !newPost});
+        });
+        
     }
 
     render() {
+        if (this.state.addPost) {
+            return <Redirect to="/dashboard/post" />
+          }
+
         return (
             <div className="container backgroud-register">
 
@@ -40,7 +55,7 @@ class Register extends Component {
                     </div>
                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <div className="register-form">
-                            <h3 class="name">Đăng ký</h3>
+                            <h3 className="name">Đăng ký</h3>
                             <form onSubmit={this.onHandleSubmit}>
                                 <Row className="input-padding">
                                     <Col lg={4} sm={4}>
@@ -89,8 +104,8 @@ class Register extends Component {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddUser: (user) => {
-            dispatch(actAddUserRequest(user));
+        onAddUser: (user, cb) => {
+            dispatch(actAddUserRequest(user, cb));
         }
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Admin from "layouts/Admin.jsx";
-import Login from "views/Login.jsx";
+// import Login from "views/Login.jsx";
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 

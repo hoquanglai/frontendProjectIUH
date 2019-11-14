@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Redirect, Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
-import AdminNavbar from "components/Navbars/AdminNavbar";
+// import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Header from "components/header/Header";
 
 import Sidebar from "components/Sidebar/Sidebar";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
+// import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import { style } from "../variables/Variables.jsx";
 import routes from "routes.js";

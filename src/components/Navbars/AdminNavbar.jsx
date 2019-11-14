@@ -17,8 +17,8 @@
 */
 import React, { Component } from "react";
 import { Navbar } from "react-bootstrap";
-import { Grid, Row, Col } from "react-bootstrap";
-import { Redirect } from 'react-router-dom';
+// import { Grid, Row, Col } from "react-bootstrap";
+// import { Redirect } from 'react-router-dom';
 
 import AdminNavbarLinks from "./AdminNavbarLinks.jsx";
 

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import "./create-post.css";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import moment from "moment";
+// import moment from "moment";
 import { actAddPostRequest } from './../../redux/action/index';
 import { connect } from 'react-redux';
 
@@ -162,7 +162,7 @@ class CreatePost extends Component {
                                                                 <i className="fa fa-minus remove"></i>
                                                             </span>
                                                         </div>
-                                                        <img className="image" src={file.data} />
+                                                        <img className="image" src={file.data} alt="" />
                                                     </div>
                                                 })}
                                             </div>
@@ -178,6 +178,7 @@ class CreatePost extends Component {
         );
     }
 }
+
 
 const mapDispatchToProps = (dispatch, props) => {
     return {

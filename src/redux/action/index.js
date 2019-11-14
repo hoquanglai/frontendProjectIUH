@@ -3,12 +3,11 @@ import callAPI from "utils/apiCaller";
 
 
 export const actListPostRequest = (state) => {
-    return (dispatch) => {
-        console.log(state);
-        
+    return (dispatch) => {        
         return callAPI(`post/get?start=${state.start}&end=${state.limit}`, 'GET', null).then(res => {
-            console.log(res);
-            dispatch(actListPostToStore(res.data))
+            if (res) {
+                dispatch(actListPostToStore(res.data))
+            }
         })
     }
 }

@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Image } from "react-bootstrap";
 // import Img from 'react-image'
 import { Redirect } from 'react-router-dom';
 import './Dashboard.css'
@@ -11,24 +11,24 @@ import { actListPostRequest } from './../../redux/action/index';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 
-var baiviets = [
-  {
-    image: 'https://media2.gody.vn/public/mytravelmap/images/2019/10/17/giahuy4210/ec208f0911b9a87848819b5143285c7c01b90bb4.jpg',
-    title: 'Tìm đường lên “Vách đá trắng” trên đỉnh núi Cô Tiên'
-  },
-  {
-    image: 'https://media2.gody.vn/public/mytravelmap/images/2018/6/1/quynhnhu/7ff85f8e9eb6f12931107b0b95f18b5cac046d48.jpg',
-    title: 'NƠI NÀO BÌNH YÊN BẰNG VIỆT NAM'
-  },
-  {
-    image: 'https://media2.gody.vn/public/mytravelmap/images/2019/4/5/hongthuy1604.sale953483/0ceb1fb6738b1b71f0626006cdd25e1d.jpg',
-    title: 'NƠI NÀO BÌNH YÊN BẰNG VIỆT NAM'
-  },
-  {
-    image: 'https://media2.gody.vn/public/mytravelmap/images/2019/8/12/thiensucuamotvisao2160/0828ef7ef7ce3661dc945982e656f33043538d60.png',
-    title: 'NƠI NÀO BÌNH YÊN BẰNG VIỆT NAM'
-  },
-]
+// var baiviets = [
+//   {
+//     image: 'https://media2.gody.vn/public/mytravelmap/images/2019/10/17/giahuy4210/ec208f0911b9a87848819b5143285c7c01b90bb4.jpg',
+//     title: 'Tìm đường lên “Vách đá trắng” trên đỉnh núi Cô Tiên'
+//   },
+//   {
+//     image: 'https://media2.gody.vn/public/mytravelmap/images/2018/6/1/quynhnhu/7ff85f8e9eb6f12931107b0b95f18b5cac046d48.jpg',
+//     title: 'NƠI NÀO BÌNH YÊN BẰNG VIỆT NAM'
+//   },
+//   {
+//     image: 'https://media2.gody.vn/public/mytravelmap/images/2019/4/5/hongthuy1604.sale953483/0ceb1fb6738b1b71f0626006cdd25e1d.jpg',
+//     title: 'NƠI NÀO BÌNH YÊN BẰNG VIỆT NAM'
+//   },
+//   {
+//     image: 'https://media2.gody.vn/public/mytravelmap/images/2019/8/12/thiensucuamotvisao2160/0828ef7ef7ce3661dc945982e656f33043538d60.png',
+//     title: 'NƠI NÀO BÌNH YÊN BẰNG VIỆT NAM'
+//   },
+// ]
 
 class Dashboard extends Component {
 
@@ -63,9 +63,9 @@ class Dashboard extends Component {
   }
 
   loadData = () => {
-    const { start, limit } = this.state;
+    const { limit } = this.state;
     this.setState({ start: this.state.start + limit });
-    const aa = this.props.fetchAllPost(this.state);
+    this.props.fetchAllPost(this.state);
   }
 
   createHtml = (data) => {
@@ -130,7 +130,7 @@ class Dashboard extends Component {
   }
 
   createPost = (e) => {
-    const current = this.state.isAdd;
+    // const current = this.state.isAdd;
     const register = this.state.register;
 
     if (register) {
