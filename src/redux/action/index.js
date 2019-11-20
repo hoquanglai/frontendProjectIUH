@@ -33,7 +33,7 @@ export const actAddPostRequest = (post) => {
         return callAPI('post/create', 'POST', data).then(res => {
             console.log(res);
             
-            // dispath(actAddPost(res.data))
+            dispath(actAddPost(res.data))
         });
     }
 }

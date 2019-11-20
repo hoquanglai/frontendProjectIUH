@@ -3,7 +3,7 @@ import axios from "axios";
 export default function callAPI(endpoint, method, body, header) {
     return axios({
         method: method,
-        url: `http://192.168.68.110:5000/${endpoint}`,
+        url: `http://localhost:5000/${endpoint}`,
         data: body,
         headers: {
             'Content-Type': 'application/json',

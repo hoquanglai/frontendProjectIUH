@@ -3,8 +3,17 @@ import "./Header.css";
 import { connect } from 'react-redux';
 import { actGetUserRequest, actLogOutUserRequest } from './../../redux/action/user';
 import Cookies from 'universal-cookie';
+import { Redirect } from 'react-router-dom';
+import { thisTypeAnnotation } from "@babel/types";
 
 class Header extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            experience: false
+        }
+    }
 
     componentDidMount() {
         const cookies = new Cookies();
@@ -16,12 +25,12 @@ class Header extends Component {
         const cookies = new Cookies();
         cookies.remove('auth-token')
         this.props.logOutUser();
+        this.props.onReceviceLogout();
     }
 
     render() {
         var currentUser = '';
         if (this.props.userCurent) {
-
             currentUser = this.props.userCurent.name
         }
 

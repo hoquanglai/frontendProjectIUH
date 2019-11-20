@@ -12,6 +12,7 @@ import { style } from "../variables/Variables.jsx";
 import routes from "routes.js";
 import image from "assets/img/sidebar-3.jpg";
 import "./Admin.css";
+import Dashboard from "../views/Dashboard/Dashboard";
 
 class Admin extends Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class Admin extends Component {
       image: image,
       color: "black",
       hasImage: true,
-      fixedClasses: "dropdown show-dropdown open"
+      fixedClasses: "dropdown show-dropdown open",
+      dasboard: false
     };
   }
   handleNotificationClick = position => {
@@ -91,31 +93,31 @@ class Admin extends Component {
       }
     });
   };
-  getBrandText = path => {
-    for (let i = 0; i < routes.length; i++) {
-      if (this.props.location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
-        return routes[i].name;
-      }
-    }
-    return "Brand";
-  };
-  handleImageClick = image => {
-    this.setState({ image: image });
-  };
-  handleColorClick = color => {
-    this.setState({ color: color });
-  };
-  handleHasImage = hasImage => {
-    this.setState({ hasImage: hasImage });
-  };
-  handleFixedClick = () => {
-    if (this.state.fixedClasses === "dropdown") {
-      this.setState({ fixedClasses: "dropdown show-dropdown open" });
-    } else {
-      this.setState({ fixedClasses: "dropdown" });
-    }
-  };
-  componentDidMount() {
+  // getBrandText = path => {
+  //   for (let i = 0; i < routes.length; i++) {
+  //     if (this.props.location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
+  //       return routes[i].name;
+  //     }
+  //   }
+  //   return "Brand";
+  // };
+  // handleImageClick = image => {
+  //   this.setState({ image: image });
+  // };
+  // handleColorClick = color => {
+  //   this.setState({ color: color });
+  // };
+  // handleHasImage = hasImage => {
+  //   this.setState({ hasImage: hasImage });
+  // };
+  // handleFixedClick = () => {
+  //   if (this.state.fixedClasses === "dropdown") {
+  //     this.setState({ fixedClasses: "dropdown show-dropdown open" });
+  //   } else {
+  //     this.setState({ fixedClasses: "dropdown" });
+  //   }
+  // };
+  // componentDidMount() {
     // this.setState({ _notificationSystem: this.refs.notificationSystem });
     // var _notificationSystem = this.refs.notificationSystem;
     // var color = Math.floor(Math.random() * 4 + 1);
@@ -148,8 +150,8 @@ class Admin extends Component {
     //   position: "tr",
     //   autoDismiss: 15
     // });
-  }
-  componentDidUpdate(e) {
+  // }
+  // componentDidUpdate(e) {
     // if (
     //   window.innerWidth < 993 &&
     //   e.history.location.pathname !== e.location.pathname &&
@@ -162,6 +164,10 @@ class Admin extends Component {
     //   document.scrollingElement.scrollTop = 0;
     //   this.refs.mainPanel.scrollTop = 0;
     // }
+  // }
+
+  logOut = () => {
+    this.props.history.replace({ pathname: '/dashboard'})
   }
 
   render() {
@@ -175,14 +181,13 @@ class Admin extends Component {
           hasImage={this.state.hasImage} />
 
         <div id="main-panel" className="main-panel" ref="mainPanel">
-          <Header />
+          <Header onReceviceLogout={this.logOut} />
           {/* <AdminNavbar
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
           /> */}
           {/* <Switch>{this.getRoutes(routes)}</Switch> */}
-          {console.log(routes)
-          }
+          
           <Switch>
             {
               routes.map((route, index) => {
@@ -195,11 +200,10 @@ class Admin extends Component {
                     render={props => (<route.component {...props} />)}
                   />
                 ) : null;
-              })}
-            <Redirect from="/" to="/dashboard" />
-
+              })
+            }
+            <Redirect from="/" to="/dashboard" />            
           </Switch>
-
           <Footer />
           {/* <FixedPlugin
             handleImageClick={this.handleImageClick} F

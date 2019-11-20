@@ -9,7 +9,8 @@ import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import { connect } from 'react-redux';
 import { actListPostRequest } from './../../redux/action/index';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
+import Modal from 'react-awesome-modal';
+import Login from '../Login'
 
 // var baiviets = [
 //   {
@@ -39,7 +40,8 @@ class Dashboard extends Component {
       isAdd: false,
       start: 0,
       limit: 3,
-      register: false
+      register: false,
+      visible: false
     };
   }
 
@@ -69,8 +71,14 @@ class Dashboard extends Component {
   }
 
   createHtml = (data) => {
-    // console.log(data);
+    console.log(data);
 
+    data.sort(function compare(a, b) {
+      var dateA = new Date(a.createDate);
+      var dateB = new Date(b.createDate);
+      return dateB - dateA
+    })
+ 
     const bodyHear = data.map((element, index) => {
       const image = "https://drive.google.com/uc?export=view&id=" + element.imageId;
       return (
@@ -80,7 +88,7 @@ class Dashboard extends Component {
               <div className="row">
                 <div className="col-sm-12 col-xs-12">
                   <Image className="Avatar" src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/69892514_987796234897639_209914993288675328_n.jpg?_nc_cat=100&_nc_oc=AQnPCzVNcJjF70yewkTJe5rhZVvjx_kItc6OEy71CVVhmsA_VQsIAQFes1AWkl8tj88&_nc_ht=scontent.fsgn2-2.fna&oh=9aff9960d7febc3b3804cc5bd33c2833&oe=5E16C79C" rounded />
-                  <span>Ho Quang Lai</span>
+                  <span>{element.userName}</span>
                 </div>
               </div>
               <a href="https://gody.vn/blog/giahuy4210/post/cam-nang-du-lich-bandung-indonesia-5535">
@@ -129,19 +137,26 @@ class Dashboard extends Component {
 
   }
 
-  createPost = (e) => {
-    // const current = this.state.isAdd;
-    const register = this.state.register;
-
-    if (register) {
-      // this.setState({ isAdd: !current })
+  createPost = (userCurrent) => {
+    const current = this.state.isAdd;
+    if (userCurrent) {
+      this.setState({ isAdd: !current })
     } else {
-      this.setState({ register: !register })
+      this.setState({
+        visible: true
+      })
     }
+  }
 
+  closeModal() {
+    this.setState({
+      visible: false
+    });
   }
 
   render() {
+    console.log(this.state);
+
     if (this.state.isAdd) {
       return <Redirect to="/dashboard/post" />
     }
@@ -151,8 +166,7 @@ class Dashboard extends Component {
     }
 
     const postAll = this.props.postAll
-    console.log(this.props.postAll);
-
+    const currentUser = this.props.userCurrent;
 
     return (
       <div className="content">
@@ -163,7 +177,7 @@ class Dashboard extends Component {
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div className="d-flex flex-row-reverse bd-highlight">
                   <div className="p-2 bd-highlight">
-                    <button type="button" className="btn btn-primary" onClick={this.createPost}>Tạo bài viết</button>
+                    <button type="button" className="btn btn-primary" onClick={() => this.createPost(currentUser)}>Tạo bài viết</button>
                   </div>
                   <div className="p-2 bd-highlight"></div>
                   <div className="p-2 bd-highlight"></div>
@@ -173,6 +187,17 @@ class Dashboard extends Component {
 
           </div>
         </Row>
+
+        <Modal
+          visible={this.state.visible}
+          // width="400"
+          // height="300"
+          effect="fadeInLeft"
+          onClickAway={() => this.closeModal()}
+        >
+          <Login />
+
+        </Modal>
 
 
         <Row className="image">
@@ -192,7 +217,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    postAll: state.posts
+    postAll: state.posts,
+    userCurrent: state.user.user
   }
 }
 

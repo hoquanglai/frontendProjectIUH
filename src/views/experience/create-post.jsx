@@ -20,13 +20,16 @@ class CreatePost extends Component {
                 description: '',
                 money: '',
                 numberOfDay: 0,
-                imageId: ''
+                imageId: '',
+                userId: ''
             }
         }
     }
 
+    componentWillMount() {
+    }
+
     componentDidMount() {
-        console.log("DIDMOUNT");
     }
 
     changImage = (e) => {
@@ -92,6 +95,11 @@ class CreatePost extends Component {
 
 
     render() {
+        const userCurent = this.props.userCurent
+        if (userCurent) {
+            this.state.post.userId = userCurent._id
+        }
+
         const { loadFile } = this.state;
         const startDate = this.state.post.startDate;
 
@@ -179,6 +187,11 @@ class CreatePost extends Component {
     }
 }
 
+const mapStateToProps = userCurent => {
+    return {
+        userCurent: userCurent.user.user
+    }
+}
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -188,4 +201,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreatePost);
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

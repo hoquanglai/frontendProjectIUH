@@ -173,6 +173,7 @@ import React from 'react';
 
 
 const UserProfile = React.lazy(() => import('./views/UserProfile'));
+const Admin = React.lazy(() => import('./layouts/Admin'));
 
 const Dashboard = React.lazy(() => import('./views/Dashboard/Dashboard'));
 const Address = React.lazy(() => import('./views/Address/Address'));
@@ -180,12 +181,11 @@ const CreatePost = React.lazy(() => import('./views/experience/create-post'));
 const Register = React.lazy(() => import('./views/register/register'));
 
 const routes = [
-  // { path: '/', exact: true },
   { path: '/dashboard', exact: true, name: "Chia Sẽ Kinh Nghiệm", icon: "pe-7s-display1", component: Dashboard },
   { path: "/user", exact: true, name: "User Profile", icon: "pe-7s-user",component: UserProfile},
   { path: '/address', exact: true, name: "Địa Điểm", icon: "pe-7s-display1", component: Address },
   { path: '/dashboard/post', component: CreatePost },
-  { path: '/register', component: Register }
+  { path: '/register', component: Register },
 
 ];
  export default routes;

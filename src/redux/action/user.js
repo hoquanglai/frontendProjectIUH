@@ -1,6 +1,18 @@
 import * as Types from '../constant/Actiontype';
 import callAPI from "utils/apiCaller";
 
+
+export const actLogInUserRequest = (user, cb) => {
+    return dispath => {
+        return callAPI('user/login', 'POST', user, null).then(res => {
+            if (res) {
+                cb(res);
+                dispath(actLogInUser(res.data))
+            }
+        });
+    }
+}
+
 export const actGetUserRequest = (token) => {
     return dispath => {
         return callAPI('user/currentUser', 'GET', null, token).then(res => {
@@ -40,6 +52,13 @@ export const actAddUser = (user) => {
 export const actLogOutUser = (user) => {
     return {
         type: Types.LOGOUT_USER,
+        user
+    }
+}
+
+export const actLogInUser = (user) => {
+    return {
+        type: Types.LOGIN_USER,
         user
     }
 }

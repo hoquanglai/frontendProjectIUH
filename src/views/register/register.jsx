@@ -31,20 +31,19 @@ class Register extends Component {
         event.preventDefault();
         console.log(this.state);
         var _self = this;
-        this.props.onAddUser(this.state, function(result) {
-            console.log(result.data.token);
+        this.props.onAddUser(this.state, function (result) {
             const cookies = new Cookies();
             cookies.set('auth-token', result.data.token, { path: '/' });
             const newPost = _self.state.addPost;
-            _self.setState({addPost: !newPost});
+            _self.setState({ addPost: !newPost });
         });
-        
+
     }
 
     render() {
         if (this.state.addPost) {
             return <Redirect to="/dashboard/post" />
-          }
+        }
 
         return (
             <div className="container backgroud-register">
